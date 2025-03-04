@@ -40,6 +40,8 @@ html {
 }
 
 body {
+  max-width: 100%;
+  height: auto;
   font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: var(--text-color);
@@ -287,6 +289,7 @@ p {
 /* Hero Section */
 .hero {
   padding: 4rem 0;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -352,9 +355,12 @@ p {
   right: 0;
   bottom: 0;
   width: 120rem;
-  height: 50rem;
-  /* width: 90rem; */
-  background: radial-gradient(circle, rgba(4, 97, 247, 0.767) 0%, rgba(59, 130, 246, 0) 70%);
+  height: 27rem;
+  background: radial-gradient(
+    circle,
+    rgba(4, 97, 247, 0.767) 0%,
+    rgba(59, 130, 246, 0) 70%
+  );
   border-radius: 50%;
   filter: blur(30px);
   z-index: -1;
@@ -729,6 +735,13 @@ p {
 }
 
 /* WhatsApp floating button */
+.whatsapp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .whatsapp-float {
   position: fixed;
   bottom: 6rem; /* Positioned above the back-to-top button */
@@ -867,4 +880,3 @@ p {
     font-size: 1.5rem;
   }
 }
-
