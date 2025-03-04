@@ -107,6 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
       message: document.getElementById("message").value,
     };
 
+    // Add a success message element if it doesn't exist
+    let successMessage = document.getElementById("form-success-message");
+    if (!successMessage) {
+      successMessage = document.createElement("div");
+      successMessage.id = "form-success-message";
+      successMessage.className = "form-success-message";
+      successMessage.style.display = "none";
+      contactForm.appendChild(successMessage);
+    }
+
     // Send form data to server
     fetch("/api/contact", {
       method: "POST",
@@ -118,15 +128,31 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert("Message sent successfully!");
+          // Show success message instead of alert
+          successMessage.textContent = "Message sent successfully!";
+          successMessage.style.display = "block";
+          successMessage.className = "form-success-message success";
           contactForm.reset();
+
+          // Hide the message after 5 seconds
+          setTimeout(() => {
+            successMessage.style.display = "none";
+          }, 5000);
         } else {
-          alert("Something went wrong. Please try again.");
+          // Show error message
+          successMessage.textContent =
+            "Something went wrong. Please try again.";
+          successMessage.style.display = "block";
+          successMessage.className = "form-success-message error";
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
+        // Show error message
+        successMessage.textContent =
+          "An error occurred. Please try again later.";
+        successMessage.style.display = "block";
+        successMessage.className = "form-success-message error";
       });
   });
 
