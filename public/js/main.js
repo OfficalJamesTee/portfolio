@@ -110,7 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
       contactForm.appendChild(successMessage)
     }
 
+    console.log("Form data being sent:", formData); // Log form data
     // Send form data to server
+
     fetch("/api/contact", {
       method: "POST",
       headers: {
@@ -120,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("Response from server:", data); // Log server response
+
         if (data.success) {
           // Show success message instead of alert
           successMessage.textContent = "Message sent successfully!"
@@ -191,4 +195,3 @@ document.addEventListener("DOMContentLoaded", () => {
     ) // 2 minutes in milliseconds
   }
 })
-
