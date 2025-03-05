@@ -139,8 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch((error) => {
-        console.error("Error:")
-        // console.error("Error:", error);
+        console.error("Error:", error);
         // Show error message
         successMessage.textContent = "An error occurred. Please try again later."
         successMessage.style.display = "block"

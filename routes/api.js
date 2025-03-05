@@ -35,6 +35,8 @@ router.post("/contact", async (req, res) => {
       console.log("Email notification sent successfully");
     } catch (emailError) {
       console.error("Failed to send email notification:", emailError);
+      return res.status(500).json({ success: false, message: "Failed to send email notification" });
+
       // Note: We don't return an error response here because the form submission was successful
       // We just log the email error but still consider the form submission successful
     }
