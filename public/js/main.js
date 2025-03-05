@@ -144,6 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((error) => {
         console.error("Error:", error);
+        console.error("Fetch request failed with status:", response.status); // Log response status
+
         // Show error message
         successMessage.textContent = "An error occurred. Please try again later."
         successMessage.style.display = "block"
