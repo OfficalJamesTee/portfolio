@@ -516,7 +516,7 @@ p {
   transition: var(--transition);
 }
 
-.project-card:hover .project-image img {
+.project-card .project-image:hover img {
   transform: scale(1.1);
 }
 

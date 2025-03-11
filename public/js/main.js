@@ -100,6 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    console.log("Form data being sent:", {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value,
+    });
+
     const formData = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
@@ -117,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contactForm.appendChild(successMessage);
     }
 
-
     // Send form data to server
 
     fetch("/api/contact", {
@@ -127,9 +133,20 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            console.error("Server responded with:", response.status, text);
+            throw new Error(`Server error: ${response.status} ${text}`);
+          });
+        }
+        return response.json().then((data) => {
+          console.log("API response:", data);
+          return data;
+        });
+      })
       .then((data) => {
-
+        console.log("API response:", data);
 
         if (data.success) {
           // Show success message instead of alert
